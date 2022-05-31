@@ -1,0 +1,29 @@
+{
+  "name": "pokecoin",
+  "version": "1.0.0",
+  "description": "pokecoin POC",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/meranti-web3/pokecoin.git"
+  },
+  "keywords": [
+    "pokecoin",
+    "NFT",
+    "ETH"
+  ],
+  "author": "Meranti",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/meranti-web3/pokecoin/issues"
+  },
+  "homepage": "https://github.com/meranti-web3/pokecoin#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "express-graphql": "^0.12.0",
+    "graphql": "^15.8.0"
+  }
+}
