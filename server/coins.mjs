@@ -56,5 +56,11 @@ export function addCoin(data) {
 }
 
 export function getCoinById(id) {
+  const coin = coins[id];
+
+  if (!coin) {
+    throw new Error(`Coin with id ${id} doesn't exist`);
+  }
+
   return coins[id];
 }
