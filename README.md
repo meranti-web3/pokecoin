@@ -22,7 +22,7 @@ Catch all your PokeCoins
 ## Tech
 
 1. Frontend is React/Tailwind CSS
-2. Backend is node.js with GraphQL
+2. Backend is node.js with GraphQL and express
 3. blockchain is Ethereum/Polygon
 
 ## Install
@@ -31,4 +31,5 @@ Do an npm install at the root of this project, maybe in client/server too
 
 1. In `server`, do `node index.mjs`
 2. In `client` do `npm run dev`
-3. Open `http://localhost:3000/`
+3. In `client` do `npm run build-css`
+4. Open `http://localhost:3000/`

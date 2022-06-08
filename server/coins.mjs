@@ -64,3 +64,7 @@ export function getCoinById(id) {
 
   return coins[id];
 }
+
+export function getAllCoins() {
+  return coins;
+}

@@ -1,27 +1,27 @@
-import { ApolloProvider } from '@apollo/client';
+import { ApolloProvider } from "@apollo/client";
 import apolloClient from "./services/server";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
-import ViewCoin from './ViewCoin';
-import CreateToken from './CreateToken';
-
-import './App.css'
+import ViewCoin from "./ViewCoin";
+import ViewCoins from "./ViewCoins";
+import CreateToken from "./CreateToken";
+import Header from "./Header";
 
 function App() {
   return (
     <ApolloProvider client={apolloClient}>
-      <div className="App">
-        <nav>
-          <Link to="/create">Create New Token</Link>
-          <Link to="/view">View</Link>
-        </nav>
-        <Routes>
-          <Route path="/create" element={<CreateToken />} />
-          <Route path="/view/:id" element={<ViewCoin />} />
-        </Routes>
+      <div className="min-h-full container mx-auto max-w-screen-lg m-4">
+        <Header />
+        <main className="border border-1 p-4 rounded-b-md">
+          <Routes>
+            <Route path="/create" element={<CreateToken />} />
+            <Route path="/" element={<ViewCoins />} />
+            <Route path="/view/:id" element={<ViewCoin />} />
+          </Routes>
+        </main>
       </div>
     </ApolloProvider>
-  )
+  );
 }
 
-export default App
+export default App;

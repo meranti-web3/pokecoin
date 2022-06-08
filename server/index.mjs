@@ -2,11 +2,12 @@ import express from "express";
 import { graphqlHTTP } from "express-graphql";
 import { buildSchema } from "graphql";
 
-import { addCoin, getCoinById } from "./coins.mjs";
+import { addCoin, getAllCoins, getCoinById } from "./coins.mjs";
 
 const schema = buildSchema(`
     type Query {
         coin(id: Int): Coin
+        allCoins: [Coin]
     }
 
     type Coin {
@@ -21,7 +22,8 @@ const schema = buildSchema(`
 
 const rootValue = {
   coin: ({ id }) => getCoinById(id),
-  addCoin: ({ data }) => addCoin(data)
+  addCoin: ({ data }) => addCoin(data),
+  allCoins: () => getAllCoins()
 };
 
 const app = express();
