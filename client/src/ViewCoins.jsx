@@ -1,9 +1,8 @@
 import { useQuery, gql } from "@apollo/client";
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 export default function ViewCoins() {
-  const { loading, data, refetch } = useQuery(
+  const { loading, data } = useQuery(
     gql`
       {
         allCoins {
@@ -11,12 +10,11 @@ export default function ViewCoins() {
           data
         }
       }
-    `
+    `,
+    {
+      fetchPolicy: "network-only"
+    }
   );
-
-  useEffect(() => {
-    refetch();
-  }, []);
 
   if (loading) {
     return <p>Loading...</p>;
