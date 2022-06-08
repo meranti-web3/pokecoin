@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { gql, useMutation } from "@apollo/client";
 import { useNavigate } from "react-router-dom";
+import Button from "./components/button";
 
 export default function CreateToken() {
   const [coinData, setCoinData] = useState("");
@@ -67,16 +68,12 @@ export default function CreateToken() {
                 </div>
               </div>
               <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                <button
-                  disabled={coinData.length === 0}
-                  type="button"
+                <Button
+                  isDisabled={coinData.length === 0}
                   onClick={() => addCoin(coinData)}
-                  className={
-                    "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 text-white"
-                  }
                 >
                   Create
-                </button>
+                </Button>
               </div>
             </div>
           </form>

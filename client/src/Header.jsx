@@ -1,4 +1,5 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import Button from "./components/button";
 
 function HeaderLink({ to, children }) {
   return (
@@ -16,6 +17,8 @@ function HeaderLink({ to, children }) {
 }
 
 export default function Header() {
+  const navigate = useNavigate();
+
   return (
     <header className="flex items-center justify-between h-16 bg-gray-800 rounded-t-md">
       <div className="flex items-center p-4 rounded-t-md grow">
@@ -24,7 +27,7 @@ export default function Header() {
         </h1>
         <nav className="ml-10 flex items-baseline space-x-4">
           <HeaderLink to="/">Browse tokens</HeaderLink>
-          <HeaderLink to="/create">Create New Token</HeaderLink>
+          <Button onClick={() => navigate("/create")}>+ New</Button>
         </nav>
       </div>
     </header>
