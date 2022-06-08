@@ -1,15 +1,22 @@
 import { useQuery, gql } from "@apollo/client";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 export default function ViewCoins() {
-  const { loading, data } = useQuery(gql`
-    {
-      allCoins {
-        id
-        data
+  const { loading, data, refetch } = useQuery(
+    gql`
+      {
+        allCoins {
+          id
+          data
+        }
       }
-    }
-  `);
+    `
+  );
+
+  useEffect(() => {
+    refetch();
+  }, []);
 
   if (loading) {
     return <p>Loading...</p>;
@@ -17,7 +24,6 @@ export default function ViewCoins() {
 
   return (
     <div>
-      <h2>All the coins</h2>
       <table className="border-collapse border-slate-500 rounded-md text-sm font-medium text-white">
         <thead className="bg-gray-900">
           <tr>
@@ -27,24 +33,26 @@ export default function ViewCoins() {
           </tr>
         </thead>
         <tbody>
-          {data.allCoins.map(({ id, data: coinData }) => (
-            <tr key={id}>
-              <td className="border border-slate-600 p-3 text-gray-700">
-                {id}
-              </td>
-              <td className="border border-slate-600 p-3 text-gray-700">
-                {coinData}
-              </td>
-              <td className="border border-slate-600 p-3 text-gray-700">
-                <Link
-                  className="text-blue-600 underline hover:text-blue-900"
-                  to={`/view/${id}`}
-                >
-                  View
-                </Link>
-              </td>
-            </tr>
-          ))}
+          {data.allCoins
+            .map(({ id, data: coinData }) => (
+              <tr key={id}>
+                <td className="border border-slate-600 p-3 text-gray-700">
+                  {id}
+                </td>
+                <td className="border border-slate-600 p-3 text-gray-700">
+                  {coinData}
+                </td>
+                <td className="border border-slate-600 p-3 text-gray-700">
+                  <Link
+                    className="text-blue-600 underline hover:text-blue-900"
+                    to={`/view/${id}`}
+                  >
+                    View
+                  </Link>
+                </td>
+              </tr>
+            ))
+            .reverse()}
         </tbody>
       </table>
     </div>

@@ -7,21 +7,6 @@ export default function ViewCoin() {
   const params = useParams();
   const [qrcode, setQRCode] = useState("");
 
-  useEffect(() => {
-    async function createQRCode() {
-      QRCode.toDataURL(
-        location.href,
-        {
-          type: "string",
-          errorCorrectionLevel: "H"
-        },
-        (_, code) => setQRCode(code)
-      );
-    }
-
-    createQRCode();
-  }, []);
-
   const { loading, data, error } = useQuery(
     gql`
       query GetCoin($id: Int) {
@@ -37,6 +22,17 @@ export default function ViewCoin() {
       }
     }
   );
+
+  useEffect(() => {
+    QRCode.toDataURL(
+      location.href,
+      {
+        type: "string",
+        errorCorrectionLevel: "H"
+      },
+      (_, code) => setQRCode(code)
+    );
+  }, []);
 
   if (loading) {
     return <p>Loading...</p>;
